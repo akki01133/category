@@ -1,4 +1,7 @@
+import 'package:category/HomeScreen.dart';
+import 'package:category/api/ApiCalls.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,6 +18,13 @@ class MyApp extends StatelessWidget {
       ),
       // home: MyHomePage(title: 'Snoodify App'),
       // TODO - start coding here
+      debugShowCheckedModeBanner: false,
+      home: RepositoryProvider(
+        create: (context)=>UserRepository(),
+        child:  const HomeScreen(),
+      ),
+
     );
   }
 }
+
