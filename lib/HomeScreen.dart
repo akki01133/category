@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       //for categories
                       Container(
-                        padding: EdgeInsets.all(18.0),
+                        padding: EdgeInsets.only(top: 18.0,left: 10.0),
                         child: Wrap(
                           spacing: 5.0,
                           runSpacing: 8.0,
@@ -67,24 +67,27 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       //for banners
                       Container(
-                        padding: EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 7.0),
+                        padding: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 7.0),
                         child:Card(
                           elevation: 10,
-                          shape: RoundedRectangleBorder
-                            (borderRadius: BorderRadius.circular(80.0)),
                           child: Container(
                             height: 180,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(80))
-                            ),
                             child:Swiper(
                               controller: _swiperController,
                               itemWidth: 250,
                               outer: false,
+                              layout: SwiperLayout.DEFAULT,
+
                               itemBuilder: (c,i){
-                                return Container(
-                                  child: Image.network(state.banners[i],fit:BoxFit.cover,height: 120,),
+                                return ClipRRect(
+                                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                                  child: Image.network(
+                                    state.banners[i],
+                                    fit:BoxFit.fill,
+                                )
                                 );
+
+
                               },
                               pagination: new SwiperPagination(builder: DotSwiperPaginationBuilder(
                                   activeColor: Colors.black,color:Colors.grey,activeSize: 8,size: 5
@@ -284,12 +287,12 @@ class RoundImageWithText extends StatelessWidget {
         ClipOval(
           child: Image.network(
             imageURL,
-            width: 50,
-            height: 50,
+            width: 40,
+            height: 40,
             fit: BoxFit.cover,
           ),
         ),
-        Text(text,style: TextStyle(fontSize: 14,fontWeight: FontWeight.normal),)
+        Text(text,style: TextStyle(fontSize: 12,fontWeight: FontWeight.normal),)
 
       ],
     );
